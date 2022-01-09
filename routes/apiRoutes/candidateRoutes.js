@@ -5,7 +5,7 @@ const inputCheck = require('../../utils/inputCheck');
 
 // !! Candidate routes
 // Get a single candidate
-app.get("/api/candidate/:id", (req, res) => {
+router.get("/api/candidate/:id", (req, res) => {
     const sql = `SELECT candidates.*, parties.name 
                   AS party_name 
                   FROM candidates 
@@ -27,7 +27,7 @@ app.get("/api/candidate/:id", (req, res) => {
   });
   
   // Delete a candidate
-  app.delete("/api/candidate/:id", (req, res) => {
+  router.delete("/api/candidate/:id", (req, res) => {
     const sql = `SELECT candidates.*, parties.name 
                   AS party_name 
                   FROM candidates 
@@ -54,7 +54,7 @@ app.get("/api/candidate/:id", (req, res) => {
   });
   
   // Create a candidate
-  app.post("/api/candidate", ({ body }, res) => {
+  router.post("/api/candidate", ({ body }, res) => {
     const errors = inputCheck(
       body,
       "first_name",
@@ -78,7 +78,7 @@ app.get("/api/candidate/:id", (req, res) => {
   });
   
   // Get all candidates
-  app.get("/api/candidates", (req, res) => {
+  router.get("/api/candidates", (req, res) => {
     const sql = `SELECT candidates.*, parties.name 
                   AS party_name 
                   FROM candidates 
@@ -99,7 +99,7 @@ app.get("/api/candidate/:id", (req, res) => {
   
   // End point route to update candidate's party
   // Update a candidate's party
-  app.put("/api/candidate/:id", (req, res) => {
+  router.put("/api/candidate/:id", (req, res) => {
     //checking to make sure there is a party_id
     const errors = inputCheck(req.body, "party_id");
     if (errors) {
